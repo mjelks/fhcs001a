@@ -1,4 +1,4 @@
-fhcs001a
+Java Lab Samples
 ========
 
-FH CS 001a labs
+Some sample code to keep Java basics fresh.
