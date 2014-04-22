@@ -1,0 +1,35 @@
+Class 03
+
+in Java local variables (variables declared in a method), 
+    will not allocate memory if not initialized.
+    long price; <--- NOT INIT.
+    long price = 5.99 <--- INITED
+    
+    int x = 30;
+    int y = 50; 
+    now swap variables
+    need tmp variable to hold for swap
+    
+    keyword 'final' for constant variables
+    final double PI = 3.14159;
+    
+    for comparison operation with real numbers, need to be careful with compiler
+        best to round to certain sig-fig and use that for comparison
+
+    expression evaluation
+        expression is a combination of contants, variables, and operators
+        
+    order of operations -- usual stuff. need parens to override mult/division rules
+    expression evaluation -- need parens to avoid improper division
+    // calculate GPA
+    double totalUnits = 80;
+    double currentGpa = 3.5;
+    double courseGpa = 3.7;
+    double courseUnits = 5;
+    double GPA;
+
+    GPA = (totalUnits * currentGpa + courseGpa * courseUnits) / (totalUnits + courseUnits)
+    
+    compound assignment operators
+    *= /- += -=
+    

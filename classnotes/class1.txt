@@ -1,0 +1,26 @@
+Java Programming - Class 01
+
+Action oriented languages - task based - focused on what needs to be done
+a -> b -> c
+
+Java is Object oriented
+3 basic principles:
+    1. Data Encapsulation
+        hide object internal functionality, only how it works (how to use the object)
+        provide an interface to the object, hide the details of the data that makes the object
+            - don't want people to mess with the base object
+    2. Inheritance
+    3. Polymorphism
+        - way to write something once, many implementations
+        
+Advantages of Java
+ C, C++, Java used in commercial applications
+ Java provides features that are flexible
+   1. portable -> write once deploy everywhere
+    - depends on JVM (supported platforms) 
+    - compile to byte-code instead of native machine lang.
+   2. automatic garbage collection
+   3. Default Polymorphism
+   4. Huge built-in library of classes (networking, JDBC connection, multi-threading, etc.) 
+   5. Simplicity (? maybe -- simpler than C/C++)
+   

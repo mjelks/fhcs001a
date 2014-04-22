@@ -17,3 +17,5 @@ hs_err_pid*
 /lab1/build/
 /lab2/nbproject/private/
 /lab2/build/
+/sample/nbproject/private/
+/sample/build/

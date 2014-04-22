@@ -1,0 +1,68 @@
+Class 02
+  In Java, everything encapsulated in a Class block 
+    - e.g. public class WelcomeToJava {}
+    
+    sample simple class code:
+public class WelcomeToJava  
+{
+  // main method is the entry point of a Java program
+  // syntax is ALWAYS like this
+  public static void main(String [ ] args) {
+    System.out.println ("\t\tWelcome to Spring 2014 at Foothill College");
+    System.out.print ("\t\tIntroduction to Java Programming");
+    System.out.println ( );       // same as   System.out.print ("\n");
+    System.out.println ("CS 1A" );
+    System.exit (0);
+  }
+}  // end of WelcomeToJava class
+
+void returns nothing
+main is reserved
+main method is the entry point for a Java program
+
+each source file can have as many classes as you want, BUT:
+  - one class MUST be public
+  - filename must match the public class name (usually the main public class)
+  
+8 basic primitive data types in Java:
+integers:
+  byte   (1 byte)
+  short  (2 bytes)
+  int    (4 bytes)
+  long   (8 bytes)
+
+float:
+  float  (4 bytes)
+  double (8 bytes) -> more accurate
+  
+character:
+  char   (2 bytes)
+  
+true/false
+  boolean (?)
+  
+common usage is int, double, char, boolean
+
+3 different types of java variables
+  local (methods, constructors, blocks)
+    - declared inside a method, constructor, or block
+  instance (class)
+  
+Declaring a variable:
+  int score;
+  int month, day, year;
+  int counter;
+  
+  double price;
+  double balance;
+  
+  char grade;
+  char gender;
+  
+  boolean completed;
+  
+  
+if you declare a variable, but don't assign / initialize the variable, 
+then output will result in runtime/compiler error if you attempt to access variable
+  class/static variable (class)
+  

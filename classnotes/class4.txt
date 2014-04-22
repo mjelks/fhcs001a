@@ -1,0 +1,6 @@
+Class 04 
+ - missed it - conversion of values to text strings (string formatting)
+  - left justified, right justified, padding
+  - printf formatting conventions
+  - data type integrity - exception handling
+  
