@@ -58,6 +58,7 @@ package CashRegister;
 import java.io.* ;    //  include Java I/O library package
 import java.util.ArrayList; // want to store value input into array
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -127,11 +128,28 @@ public class CalculateChange {
 	return myMap;
   }
   
+  public double calculateTotal(HashMap myMap) {
+	double total = 0.00;
+	HashMap<String, InventoryItem> items = myMap;
+	
+	for (String key : items.keySet()) {
+	  //System.out.println("key: " + key + " value: " + items.get(key).productDescription);
+	  total += items.get(key).productPrice;
+	}
+
+	return total;
+  }
+  
+  public void printChangeOutput(HashMap myMap) {
+	
+  }
+  
   //public void output
   
   public void printOutput(HashMap myMap) {
 	// output with some formatting
 	System.out.println("HEY!");
-	System.out.println(myMap);
+	System.out.println("TOTAL: " + this.calculateTotal(myMap));
+	//System.out.println(myMap);
   }
 } // end class
