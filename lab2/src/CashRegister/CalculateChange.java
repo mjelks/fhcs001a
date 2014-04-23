@@ -63,25 +63,17 @@ import java.util.Map;
 
 public class CalculateChange {
 
-  HashMap<String, InventoryItem> myMap = new HashMap<String, InventoryItem>();
-    //Map<String,String> priceData = new HashMap<String,String>();
-  //String  productDescription = "";
-  //double  productPrice = 0.0;
+  HashMap<String, InventoryItem> productMap = new HashMap<String, InventoryItem>();
+  
   double customerAmount = 0.0;
   int counter = 0;
 
-  int dollars;
-  int quarters;
-  int dimes;
-  int nickels;
-  int pennies;
-
   public static void main(String[] args) {
-    HashMap myMap = new CalculateChange().getInput();
+    HashMap productMap = new CalculateChange().getInput();
     double customerAmount = new CalculateChange().getCustomerAmount();
-    double total = new CalculateChange().calculateTotal(myMap);
-    new CalculateChange().calculateChange(total, customerAmount);
-    new CalculateChange().printOutput(myMap, customerAmount);
+    double total = new CalculateChange().calculateTotal(productMap);
+    new CalculateChange().printChange(total, customerAmount);
+    new CalculateChange().printReceipt(productMap, customerAmount);
   } // end main method
 
   public HashMap getInput() {
@@ -104,29 +96,21 @@ public class CalculateChange {
 
       InventoryItem priceItem = new InventoryItem(description, price);
 
-      myMap.put(new Integer(this.counter).toString(), priceItem);
+      productMap.put(new Integer(this.counter).toString(), priceItem);
       this.counter++;
 
       System.out.print("Scan another item? ");
       buffer = br.readLine();
-      //System.out.println("Buffer: " + buffer);
-      if (buffer.equals("y") || buffer.equals("yes")) {
+
+	  if (buffer.equals("y") || buffer.equals("yes")) {
         this.getInput();
       }
       
-      //System.out.println(this.myMap);
-      //System.out.println(foo.productDescription);
     } catch (IOException e) {
       e.printStackTrace();
     }
 
-	// output results without formatting
-//	System.out.println ("Product ID: " + this.productID );
-//	System.out.println ("Product price: " + this.productPrice );
-//	System.out.println ("Product description: " + this.productDescription );
-    // output with some formatting
-    //System.out.println(this.myMap);
-    return myMap;
+    return productMap;
   }
   
   public double getCustomerAmount() {
@@ -142,9 +126,9 @@ public class CalculateChange {
     return this.customerAmount;
   }
 
-  public double calculateTotal(HashMap myMap) {
+  public double calculateTotal(HashMap productMap) {
     double total = 0.00;
-    HashMap<String, InventoryItem> items = myMap;
+    HashMap<String, InventoryItem> items = productMap;
 
     for (String key : items.keySet()) {
       //System.out.println("key: " + key + " value: " + items.get(key).productDescription);
@@ -154,39 +138,113 @@ public class CalculateChange {
     return total;
   }
   
-  public void calculateChange(double total, double customerAmount) {
-    double change = 0;
-    if (total > customerAmount) {
+  public void printChange(double total, double customerAmount) {
+	if (total > customerAmount) {
       System.out.println("Please enter an amount that is greater than the total of all items");
-    } else {
-      this.dollars = (int) customerAmount; // grab the int value (left of decimal)      
-      change = this.dollars - customerAmount;
-      System.out.println("Change");
-      System.out.println();
-      System.out.println("Dollars: " + this.dollars);
-      System.out.println();
-      System.out.println("CHANGE???: " + change);
-      System.out.println("Quarters: ");
-      System.out.println();
-      System.out.println("Dimes: ");
-      System.out.println();
-      System.out.println("Nickels: ");
-      System.out.println();
-      System.out.println("Pennies: ");
-      System.out.println();
+    } 
+	else {
+      HashMap<String, Integer> changeMap = this.calculateChange(customerAmount - total);
+	  
+	  System.out.println("============================================");
+	  System.out.println();
+	  System.out.println("Change");
+	  System.out.println();
+	  System.out.println("Hundreds: " + changeMap.get("hundreds"));
+	  System.out.println();
+	  System.out.println("Fifties: " + changeMap.get("fifties"));
+	  System.out.println();
+	  System.out.println("Twenties: " + changeMap.get("twenties"));
+	  System.out.println();	  
+	  System.out.println("Tens: " + changeMap.get("tens"));
+	  System.out.println();
+	  System.out.println("Fives: " + changeMap.get("fives"));
+	  System.out.println();
+	  System.out.println("Ones: " + changeMap.get("ones"));
+	  System.out.println();
+	  System.out.println("Quarters: " + changeMap.get("quarters"));
+	  System.out.println();
+	  System.out.println("Dimes: " + changeMap.get("dimes"));
+	  System.out.println();
+	  System.out.println("Nickels: " + changeMap.get("nickels"));
+	  System.out.println();
+	  System.out.println("Pennies: " + changeMap.get("pennies"));
+	  System.out.println();
+	  System.out.println("============================================");
+	  System.out.println();
+
     }
   }
-
-  public void printChangeOutput(HashMap myMap) {
-
+  
+  public HashMap calculateChange(double customerAmount) {
+	int dollarAmount = 0;
+    double changeAmount = 0;
+	int convertedAmount = 0;
+	HashMap<String, Integer> changeMap = new HashMap<String, Integer>();
+	
+	dollarAmount = (int) customerAmount; // grab the int value (left of decimal)
+	// get the stuff after the decimal place (WE SHOULD REALLY BE USING BigDecimal)
+    changeAmount = (customerAmount % 1) * 100;
+	convertedAmount = (int) Math.round(changeAmount);
+	
+	int hundreds = dollarAmount / 100;
+	int fifties = ( (dollarAmount - (100 * hundreds)) / 50);
+	int twenties = ( (dollarAmount - (100 * hundreds) - (50 * fifties)) / 20);
+	int tens = ( (dollarAmount - (100 * hundreds) - (50 * fifties) - (20 * twenties)) / 10);
+	int fives = ( (dollarAmount - (100 * hundreds) - (50 * fifties) - (20 * twenties) - (10 * tens)) / 5);
+	int ones = ( (dollarAmount - (100 * hundreds) - (50 * fifties) - (20 * twenties) - (10 * tens) - (5 * fives) ));
+	
+	int quarters = convertedAmount / 25;
+	int dimes = ( (convertedAmount - (25 * quarters)) / 10);
+	int nickels = ( ( convertedAmount - (25 * quarters) - (10 * dimes)) / 5);
+	int pennies = (convertedAmount - (25 * quarters) - (10 * dimes) - (5 * nickels) );
+	
+	changeMap.put("hundreds", hundreds);
+	changeMap.put("fifties", fifties);
+	changeMap.put("twenties", twenties);
+	changeMap.put("tens", tens);
+	changeMap.put("fives", fives);
+	changeMap.put("ones", ones);
+	
+	changeMap.put("quarters", quarters);
+	changeMap.put("dimes", dimes);
+	changeMap.put("nickels", nickels);
+	changeMap.put("pennies", pennies);
+	
+	return changeMap;
   }
-
+  
   //public void output
-  public void printOutput(HashMap myMap, double customerAmount) {
-    // output with some formatting
-    System.out.println("HEY!");
-    System.out.println("TOTAL: " + this.calculateTotal(myMap));
-    System.out.println("Customer amt: " + customerAmount);
-    //System.out.println(myMap);
+  // output with some formatting -- the receipt
+  public void printReceipt(HashMap productMap, double customerAmount) {    
+	HashMap<String, InventoryItem> items = productMap;
+	double total = this.calculateTotal(productMap);
+	
+	// print top section
+	System.out.println("********************************************");
+	System.out.println();
+	System.out.println("PURCHASE RECEIPT");
+	System.out.println();
+	
+	// loop through the product hash map and output the description and price
+	for (String key : items.keySet()) {
+	  System.out.format ("%-16s\t\t$%8.2f%n", items.get(key).productDescription, items.get(key).productPrice );
+	  System.out.println();
+	}
+	
+	// formatted print total
+	System.out.format ("%-16s\t\t$%8.2f%n", "Total:", total);
+	System.out.println();
+	
+	// formatted print amount paid
+	System.out.format ("%-16s\t\t$%8.2f%n", "Amount Paid:", customerAmount);
+	System.out.println();
+
+	// formatted print change
+	System.out.format ("%-16s\t\t$%8.2f%n", "Change:", customerAmount - total);
+	System.out.println();
+	
+	// print bottom border
+	System.out.println("********************************************");
+    
   }
 } // end class
