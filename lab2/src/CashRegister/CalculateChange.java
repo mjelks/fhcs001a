@@ -69,14 +69,14 @@ public class CalculateChange {
   int counter = 0;
 
   public static void main(String[] args) {
-	HashMap productMap = new CalculateChange().getInput();
+	HashMap<String, InventoryItem> productMap = new CalculateChange().getInput();
 	double customerAmount = new CalculateChange().getCustomerAmount();
 	double total = new CalculateChange().calculateTotal(productMap);
 	new CalculateChange().printChange(total, customerAmount);
 	new CalculateChange().printReceipt(productMap, customerAmount);
   } // end main method
 
-  public HashMap getInput() {
+  public HashMap<String, InventoryItem> getInput() {
 	try {
 	  String description;
 	  double price;
@@ -126,7 +126,7 @@ public class CalculateChange {
 	return this.customerAmount;
   }
 
-  public double calculateTotal(HashMap productMap) {
+  public double calculateTotal(HashMap<String, InventoryItem> productMap) {
 	double total = 0.00;
 	HashMap<String, InventoryItem> items = productMap;
 
@@ -174,7 +174,7 @@ public class CalculateChange {
 	}
   }
 
-  public HashMap calculateChange(double customerAmount) {
+  public HashMap<String, Integer> calculateChange(double customerAmount) {
 	int dollarAmount = 0;
 	double changeAmount = 0;
 	int convertedAmount = 0;
@@ -214,7 +214,7 @@ public class CalculateChange {
 
   //public void output
   // output with some formatting -- the receipt
-  public void printReceipt(HashMap productMap, double customerAmount) {
+  public void printReceipt(HashMap<String, InventoryItem> productMap, double customerAmount) {
 	HashMap<String, InventoryItem> items = productMap;
 	double total = this.calculateTotal(productMap);
 
