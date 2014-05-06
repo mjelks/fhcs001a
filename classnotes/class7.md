@@ -116,4 +116,3 @@ for (int line=1;line <= 100; line++) {
 for (int line=1;line <= 100; line+=2) {
   System.out.format("%3d%n",line);
 }
-```
