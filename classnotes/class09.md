@@ -73,3 +73,43 @@ for (int i=0;i<list1.length;i++) {
 // System.arraycopy(from,fromIndex,to,toIndex,count);
 System.arraycopy(list1,0,list2,0,list1.length);
 ```
+
+##### 5. Array Sort
+```java
+import java.util.*;
+
+// sort array in ascending order
+Array.sort(array);
+```
+
+### Java Classes
+
+- **Classes** are building blocks of an OOP Language
+- Objects of the same type are defined or represented by a **common class** 
+  (Car, Book, Inventory)
+- A **class** is a blueprint from which individual objets are created/instatiated
+
+#### C.java
+```java
+package network;
+class A {
+
+}
+class B {
+
+}
+public class C {
+
+}
+```
+
+#### D.java
+```java
+// to access class A and class B
+// need to split them into their own class files (classA.java)
+import network.*;
+
+public class D {
+
+}
+```
