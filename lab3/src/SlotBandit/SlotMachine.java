@@ -29,6 +29,7 @@ public class SlotMachine {
   // this builds the initial prompt that asks user for play/deposit/quit
   public void showPrompt() {
 	String selection = "";
+	int int_option = 0;
 	String final_element = (String)this.possibilities[this.possibilities.length-1];
 	
 	// ONLY EXIT if you select Quit + OK
@@ -50,29 +51,54 @@ public class SlotMachine {
 			 "Play"
 	  );
 	  System.out.println(selection);
-	  this.handleSelection(selection);
+	  
+	  int_option = (selection == "Play") ? 1 : int_option;
+	  int_option = (selection == "Deposit") ? 2 : int_option;
+	  
+	  this.handleSelection(int_option);
+	  
 	}
 	
-	
-	System.exit(0);
-	//String selection = 
+//String selection = 
 	//if (selection == JOptionPane.OK_OPTION)
   }
   
-  public void handleSelection(String selection) {
-	String user_input;
-	if (selection == "Deposit") {
-	   user_input = JOptionPane.showInputDialog(
-			 null,
-			 "Enter a deposit in $:", 
-			 this.dialog_title, 
-			 JOptionPane.PLAIN_MESSAGE
-	  );
-	  
-	  this.deposit += Integer.valueOf(user_input);
-	  // four quarters per dollar (1 quarter == 1 play)
-	  this.credits = this.deposit * 4; 
+  public void handleSelection(int selection) {
+	switch (selection) {
+	  case 1:
+		break;
+	  case 2:
+		this.handleDeposit();
+		break;
+	  default:
+		this.handleQuit();
+		break;
 	}
+  }
+  
+  public void handleDeposit() {
+	String user_input;
+	
+	user_input = JOptionPane.showInputDialog(
+	  null,
+	  "Enter a deposit in $:", 
+	  this.dialog_title, 
+	  JOptionPane.PLAIN_MESSAGE
+	);
+	  
+	this.deposit += Integer.valueOf(user_input);
+	// four quarters per dollar (1 quarter == 1 play)
+	this.credits = this.deposit * 4; 
+  }
+  
+  public void summaryScreen() {
+	System.out.println("THIS IS THE SUMMARY SCREEN");
+  }
+  
+  public void handleQuit() {
+	this.summaryScreen();
+	System.out.println("DONE!");
+	System.exit(0);
   }
   
   // method for depositing coins and storing info
