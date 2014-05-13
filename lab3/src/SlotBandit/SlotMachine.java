@@ -52,8 +52,8 @@ public class SlotMachine {
 	  );
 	  System.out.println(selection);
 	  
-	  int_option = (selection == "Play") ? 1 : int_option;
-	  int_option = (selection == "Deposit") ? 2 : int_option;
+	  int_option = (selection.equals("Play")) ? 1 : int_option;
+	  int_option = (selection.equals("Deposit")) ? 2 : int_option;
 	  
 	  this.handleSelection(int_option);
 	  
