@@ -39,3 +39,29 @@ public class CheckingAccount {
 |Protected      |Y         |Y           |Y       |N       |
 |Package        |Y         |Y           |N       |N       |
 |Private        |Y         |N           |N       |N       |
+
+### Instance Methods
+
+```java
+public double getBalance() { return balance; }
+
+public void setBalance(double balance) { balance += amount; }
+
+void deposit(double amount) { balance += amount; }
+
+public boolean withdraw(double amount) {
+  boolean status = true;
+  if (balance >= amount) {
+    balnce -= amount;
+  } else {
+    status = false;
+  }
+}
+```
+
+#### Getters && Setters
+
+- most of the time you have getters
+  - read only methods
+
+- setters for write 
