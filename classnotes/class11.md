@@ -14,8 +14,17 @@ public class CheckingAccount {
   private double balance;
   private char status;
   
+  // default constructor takes no parameters -- still important
   // constructors
   public checkingAccount() {} // default constructor
+  // constructor does not specify return type or even void
+  // primarily used for initing vars
+  public checkingAccount(String name, int accountNumber, double balance) {
+    this.name = name;
+    this.accountNumber = accountNumber;
+    this.balance = balance;
+    this.status = status;
+  }
 
 } // end class
 ``` 
