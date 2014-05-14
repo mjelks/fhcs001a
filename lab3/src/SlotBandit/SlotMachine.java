@@ -32,19 +32,25 @@ public class SlotMachine {
   // this builds the initial prompt that asks user for play/deposit/quit
   public void showPrompt() {
 	String selection = "";
-	String final_element = (String)this.possibilities[this.possibilities.length-1];
+	String final_element = 
+            (String)this.possibilities[this.possibilities.length-1];
 	
 	// ONLY EXIT if you select Quit + OK
 	while (selection != final_element) {
       int int_option = 0; // default to 0 (quit / default in case statement)
       this.finalScore = 0; // init to 0
       this.winnerText = ""; // init to empty
-	  // NEED TO REBUILD MESSAGE everytime so deposit gets reflected in update
+	  
+      // NEED TO REBUILD MESSAGE everytime so deposit gets reflected in update
 	  // Welcome to FRUIT BUILDER
 	  StringBuilder slot_message = new StringBuilder("Welcome to ");
 	  slot_message.append(this.dialog_title.toUpperCase()); 
 	  // rest of the message above the combo box
-	  slot_message.append(String.format("%n%nYour credit: %d%nPlease select your option:%n", this.credits));
+	  slot_message.append(String.format
+        (
+          "%n%nYour credit: %d%nPlease select your option:%n", 
+          this.credits)
+        );
 	
 	  selection = (String)JOptionPane.showInputDialog(
 			 null, 
@@ -65,9 +71,7 @@ public class SlotMachine {
 	  this.handleSelection(int_option);
 	  
 	}
-	
-//String selection = 
-	//if (selection == JOptionPane.OK_OPTION)
+    
   }
   
   public void handleSelection(int selection) {
@@ -110,7 +114,8 @@ public class SlotMachine {
     String[] result = new String[3];
     for (int i = 0; i < 3; i++) {
       // generate 1 of the chars based on this :
-      // http://stackoverflow.com/questions/363681/generating-random-numbers-in-a-range-with-java
+      // http://stackoverflow.com/questions/363681/
+      // generating-random-numbers-in-a-range-with-java
       int randomNum = minimum + (int)(Math.random()*maximum); 
       result[i] = charOptions[randomNum];
     }
@@ -138,16 +143,14 @@ public class SlotMachine {
     O O D ==> 10000
     JAV   ==> 5000
     Same 3 symbols  ==> 200
-    Any 2 consecutive Os (JOO, OOA, DOO,..) ==> 100
-    Any 2 consecutive Js (JJA, OJJ, DJJ, …) ==> 50
+    Any 2 consecChar Os (JOO, OOA, DOO,..) ==> 100
+    Any 2 consecChar Js (JJA, OJJ, DJJ, …) ==> 50
     Any 1 A ==> 2
   */ 
   public String parseSpin(String[] result) {
     String spinnerResult = Arrays.toString(result);
     
-    
-    
-    // just go down the list of conditions. the finalScore is NOT accumulative, 
+    // just go down the list of conditions. the finalScore is NOT an aggregate, 
     // so it should be overwritten by the higher amount if there is a match
     
     // Any 1 A ==> 2
@@ -156,27 +159,30 @@ public class SlotMachine {
       this.winnerText = "There was an 'A' in your spin. You win 2 credits!";
     }
     
-    // Any 2 consecutive Js (JJA, OJJ, DJJ, …) ==> 50
-    this.testConsecutive("J", result, 50);
+    // Any 2 consecChar Js (JJA, OJJ, DJJ, …) ==> 50
+    this.consecChar("J", result, 50);
     
-    //Any 2 consecutive Os (JOO, OOA, DOO,..) ==> 100
-    this.testConsecutive("O", result, 100);
+    //Any 2 consecChar Os (JOO, OOA, DOO,..) ==> 100
+    this.consecChar("O", result, 100);
     
     //Same 3 symbols  ==> 200
     if (result[0].equals(result[1]) && result[1].equals(result[2])) {
       this.finalScore = 200;
-      this.winnerText = "All three characters match. You win " + this.finalScore + " credits!";
+      this.winnerText = "All three characters match. "
+        + "You win " + this.finalScore + " credits!";
     }
     
     // JAV   ==> 5000
     if (spinnerResult.equals("[J, A, V]")) {
       this.finalScore = 5000;
-      this.winnerText = "You spelled JAV. You win " + this.finalScore + " credits!";
+      this.winnerText = "You spelled JAV. "
+              + "You win " + this.finalScore + " credits!";
     }
     // OOD   ==> 10000
     if (spinnerResult.equals("[O, O, D]")) {
       this.finalScore = 10000;
-      this.winnerText = "You spelled OOD. You win " + this.finalScore + " credits!";
+      this.winnerText = "You spelled OOD. "
+              + "You win " + this.finalScore + " credits!";
     }
     
     // add the winner logic to the prompt box
@@ -192,12 +198,13 @@ public class SlotMachine {
   }
   
   // take the full length of the spin array -1 and test element 0 vs 1, 1 vs 2
-  // this will check if consecutive
-  public void testConsecutive(String character, String[] result, int creditValue) {
+  // this will check if consecChar
+  public void consecChar(String character, String[] result, int creditValue) {
     for (int i = 0; i < result.length - 1; i++) {
       if (result[i].equals(character) && result[i].equals(result[i+1])) {
         this.finalScore = creditValue;
-        this.winnerText = "There were 2 consecutive \"" + character + "'s\". You win " + creditValue + " credits!";
+        this.winnerText = "There were 2 consecutive \"" + 
+                character + "'s\". You win " + creditValue + " credits!";
       }
     }
   }
@@ -220,7 +227,8 @@ public class SlotMachine {
   public void summaryScreen() {
     JOptionPane.showMessageDialog(
       null,
-      "Thank you for playing. Your total credits after quitting is: " + this.credits, 
+      "Thank you for playing. "
+              + "Your total credits after quitting is: " + this.credits, 
       this.dialog_title, JOptionPane.PLAIN_MESSAGE
     );
   }
