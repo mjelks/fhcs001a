@@ -2,66 +2,37 @@
 
 ---
 
-## Sample:
+## Static Data Fields
+
+- One single data point for entire class
+- Static fields are class-wide information / shared data
+
+## Static methods
+
+- can exist independently of class object
+- might be accessed even if no object instantiated
+- do not need any object at all if public
+
+
+#### Static methods can only access 
+- static Fields
+- other static methods
+
+- On the other hand, instance fields and methods can access static methods
+
+## Object Instantiation
+
+1. Declare an object reference (no memory allocated)
 ```java
-public class CheckingAccount {
-  // instance fields
-  // fields belong to an instance
-  // always exist when creating a new object
-  // initialized to some value by java for you on object creation
-  private String name; // i.e. init to null on obj. creation
-  private int accountNumber;
-  private double balance;
-  private char status;
-  
-  // default constructor takes no parameters -- still important
-  // constructors
-  public checkingAccount() {} // default constructor
-  // constructor does not specify return type or even void
-  // primarily used for initing vars
-  public checkingAccount(String name, int accountNumber, double balance) {
-    this.name = name;
-    this.accountNumber = accountNumber;
-    this.balance = balance;
-    this.status = status;
-  }
-
-} // end class
-``` 
-
-### Access Modifiers
-
-**public > protected > package > private**
-
-|access modifier|same class|same package|subclass| package|
-|---------------|:--------:|:----------:|:------:|:------:|
-|Public         |Y         |Y           |Y       |Y       |
-|Protected      |Y         |Y           |Y       |N       |
-|Package        |Y         |Y           |N       |N       |
-|Private        |Y         |N           |N       |N       |
-
-### Instance Methods
-
-```java
-public double getBalance() { return balance; }
-
-public void setBalance(double balance) { balance += amount; }
-
-void deposit(double amount) { balance += amount; }
-
-public boolean withdraw(double amount) {
-  boolean status = true;
-  if (balance >= amount) {
-    balnce -= amount;
-  } else {
-    status = false;
-  }
-}
+CheckingAccount acct1; // just a reference -- init'd to a null value
+double fee; // just initialized
+acct1.deposit(1000) // error/crash NullReference
 ```
 
-#### Getters && Setters
-
-- most of the time you have getters
-  - read only methods
-
-- setters for write 
+2. Instantiate an object
+```java
+// method 1
+acct1 = new CheckingAccount(); // default constructor takes no params
+// method 2
+CheckingAccount acct2 = new CheckingAccount("James", 12345,100.00,'A');
+```
