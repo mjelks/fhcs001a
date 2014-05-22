@@ -36,8 +36,23 @@ public static void createCircle() {
 
 ## Objects && Arrays
 
+- when you declare an array, just declaring a reference to an array
 
 
+```java
+// reference to integer array
+int[] arr; 
 
+// arr is now pointing to array of integers from 0-31 index elements
+arr = new int[32];
 
+// Objects require more steps
+Point[] points; // reference to array of points objects
+// creates 32 'references' to point objects
+points = new Point[32];
+// points[i] is NOT a Point obj
+// points[i] is a REFERENCE to a Point object
+for (int i=0; i<points.length; i++) {
+  points[i] = new Point();
+}
 ```
