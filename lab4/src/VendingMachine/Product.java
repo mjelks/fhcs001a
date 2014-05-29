@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  *
  * @author mjelks
@@ -22,6 +16,13 @@ public class Product {
 	this.description = "";
 	this.price = 0;
 	this.quantity = 0;
+  }
+  
+  public Product(String position, String description, double price) {
+	this.position = position;
+	this.description = description;
+	this.price = price;
+	this.quantity = 5;
   }
   
   public void sell() {

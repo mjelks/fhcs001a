@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  *
  * @author mjelks
@@ -56,18 +50,51 @@ public class Coin {
 	return (this.nickels * .05) + (this.dimes * .10) + (this.quarters * .25);
   }
   
-  public int withdrawCoins(double amount) {
-	int totalCoins = 0;
+  public boolean withdrawCoins(double productAmount) {
+	boolean valid = false;
 	
-	if (amount > .04) {
-	  //totalCoins = Integer (amount / .25 ).intValue() + (amount / .10).intValue() + (amount / .05).intValue();
+	int retval = Double.compare(productAmount, this.totalValue());
+	System.out.println(retval);
+	// if productAmount less than or == total, we're good
+	if (retval < 0 || retval == 0) {
+	  valid = true;
+	  int quartersAmount = (int) (productAmount / .25);	
+	  int dimesAmount = (int) ( (productAmount - (quartersAmount * .25)) / .10);
+	  int nickelsAmount = (int) ( (productAmount - (quartersAmount * .25) - (dimesAmount * .10)) / .05);
+
+	  if (quartersAmount > 0) {
+		this.quarters -= quartersAmount;
+	  }
+
+	  if (dimesAmount > 0) {
+		this.dimes -= dimesAmount;
+	  }
+
+	  if (nickelsAmount > 0) {
+		this.nickels -= nickelsAmount;
+	  }
 	}
 	
-	return totalCoins;
+	return valid;
   }
   
-  // convert coins to 
+  // convert amount to coins
   public void insertCoins(double amount) {
+	int quartersAmount = (int) (amount / .25);	
+	int dimesAmount = (int) ( (amount - (quartersAmount * .25)) / .10);
+	int nickelsAmount = (int) ( (amount - (quartersAmount * .25) - (dimesAmount * .10)) / .05);
+	
+	if (quartersAmount > 0) {
+	  this.quarters += quartersAmount;
+	}
+	
+	if (dimesAmount > 0) {
+	  this.dimes += dimesAmount;
+	}
+	
+	if (nickelsAmount > 0) {
+	  this.nickels += nickelsAmount;
+	}
 	
   }
   
