@@ -63,9 +63,30 @@ Swing library offers:
 
 ### Process of developing GUI
 
+#### GUI DESIGN (BUILDING PROCESS)
+
 - Create the top-level window (frame)
   - determine the **frame's** attributes such as title, size, location, default behavior
 - Set the **frame's** layout scheme if needed
   - each frame will have a default layout manager
 - Create **panels** and add them to the **frame** based on your chosen layout scheme
 - Create UI Components and add them to the **panels**  based on your chosen layout scheme for the panel
+  - the panels can have diff. layout managers depending on how you want to arrange the UI components on the panels
+  
+#### GUI BEHAVIOR
+
+##### Once we have finished with **GUI DESIGN** , need to provide event handlers for UI Components
+
+- Delegate the GUI startup process to the event dispatch thread (**EDT**)
+
+```Java
+class MyAppFrmae Extends JFrame {
+  public MyAppFrame() {
+    setTitle("AppFrame");
+    Dimension dis = kit.getScreenSize();
+    int screenWidth = dis.width;
+    int screenHeight = dis.height;
+  }
+}
+```
+  
