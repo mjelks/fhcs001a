@@ -38,3 +38,34 @@ int target = 100
 ```
 
 ## GUI
+
+- Create top level window -> 'Frame'
+  - Add in 'Panels'
+  
+#### To build a Java GUI application we need to import 3 packages:
+
+```java
+import java.awt.*; // containers
+import java.awt.event.*; // events
+improt javax.swing.*; // UI components
+```
+
+Swing library offers:
+- richer & more convenient set of UI Components
+- depend less on the underlying target platform
+- more consistent user experience across platforms
+
+**BUT**
+
+#### Swing library is NOT thread safe
+
+- need to use the event dispatch thread to handle this situation
+
+### Process of developing GUI
+
+- Create the top-level window (frame)
+  - determine the **frame's** attributes such as title, size, location, default behavior
+- Set the **frame's** layout scheme if needed
+  - each frame will have a default layout manager
+- Create **panels** and add them to the **frame** based on your chosen layout scheme
+- Create UI Components and add them to the **panels**  based on your chosen layout scheme for the panel
