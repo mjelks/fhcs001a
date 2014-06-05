@@ -49,6 +49,7 @@ panel.setLayout(new BorderLayout());
 ```Java
 JLabel label = new JLabel("Spring 2014");
 tadd(label, BorderLayout.NORTH);
+```
 
 ### FlowLayout Manager
 
