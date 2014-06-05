@@ -63,4 +63,11 @@ tadd(label, BorderLayout.NORTH);
 ```java
 setAlignment(FlowLayout.LEFT);
 setAlignment(FlowLayout.RIGHT);
+
+JPanel panel - new JPanel();
+panel.setLayout(new FlowLayout(FlowLayout.LEFT));
+
+// setting alignment after the fact
+FlowLayout layout = panel.getLayout();
+layout.setAlignment(FlowLayout.LEFT);
 ```
