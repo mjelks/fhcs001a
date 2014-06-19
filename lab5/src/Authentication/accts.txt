@@ -1,0 +1,11 @@
+a$1
+j111$abc123
+j999$passw0rd
+t222$passpass
+k555$no4yes
+j000$mypass
+t999$xyz4xyz
+k666$ok2use
+k222$123abc
+j888$temp4u
+t000$tmptmp

@@ -23,7 +23,8 @@ public class VendingMachine {
   private String machineId;
   private Product[] products = new Product[9];
   
-  private Object[] possibilities = {"Insert Coins", "Select a product", "Return coins"};
+  private Object[] possibilities = 
+    {"Insert Coins", "Select a product", "Return coins"};
   
   private String paneMessage = "Please select an option:";
   private String paneTitle = "Vending Machine";
@@ -175,7 +176,9 @@ public class VendingMachine {
 	  totalCounter++;
 	}
 	
-	productString.append("\nPlease input the leter + number combo to choose an item.");
+	productString.append(
+	"\nPlease input the leter + number combo to choose an item."
+	);
 	
 	return productString;
   }
